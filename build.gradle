@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'net.purplemc'
+version '1.0-SNAPSHOT'
+
+project.tasks.build.dependsOn(project.tasks.shadowJar)
+jar.enabled(false)
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.netty:netty-all:4.1.87.Final'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.purplemc.server.Launcher'
+    }
+}
+
+shadowJar {
+    archiveVersion = ""
+    archiveClassifier = ""
+    archiveBaseName = "PurpleMc"
+}
